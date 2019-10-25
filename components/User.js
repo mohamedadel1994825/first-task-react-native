@@ -1,12 +1,23 @@
 import { MyColors, Width } from '..';
-import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
-import React, { Component } from 'react'
-export const User = ({ name, username, email, address, phone }) => {
+import { View, Text, TouchableOpacity, FlatList, StyleSheet, AsyncStorage, } from 'react-native';
+import React, { useState, useEffect } from 'react'
+export const User = ({ name, username, email, phone, selected, onSelect, id }) => {
+    // const [name, setName,username, setUsername,email,
+    //      setEmail,phone,setPhone,name, setName,] = useState('value');
+
     return (
-        <View style={{
-            width: Width * .9, justifyContent: 'space-around',
-            alignItems: 'center', backgroundColor: 'red'
-        }}>
+        <TouchableOpacity
+            onPress={() => {
+                onSelect(id),
+                AsyncStorage.setItem('name', name)
+            }}
+            activeOpacity={.9}
+            style={{
+                width: Width * .9, justifyContent: 'space-around', marginTop: Width * .02,
+                alignItems: 'center', backgroundColor: selected ? 'orange' : MyColors.usersBorderColor,
+                borderColor: MyColors.usersBorderColor,
+                borderWidth: Width * .01
+            }}>
             <Text style={{
                 fontWeight: 'bold', fontSize: Width * .05,
                 textAlign: 'center', color: 'white'
@@ -15,38 +26,14 @@ export const User = ({ name, username, email, address, phone }) => {
                 fontWeight: 'bold', fontSize: Width * .05,
                 textAlign: 'center', color: 'white'
             }}>{username}</Text>
-             <Text style={{
+            <Text style={{
                 fontWeight: 'bold', fontSize: Width * .05,
                 textAlign: 'center', color: 'white'
             }}>{email}</Text>
-              <Text style={{
+            <Text style={{
                 fontWeight: 'bold', fontSize: Width * .05,
                 textAlign: 'center', color: 'white'
             }}>{phone}</Text>
-            {/* <View style={{backgroundColor:'yellow',
-                            width:'100%',height:Width*.1}}>
-                {
-                    address.map(address => {
-                        return(
-                            <View style={{ justifyContent: 'center', alignItems: 'center',
-                            width:'100%',height:Width*.1 }}>
-                            <Text style={{ margin: 5, color: 'white', fontSize: Width * .05 }}>{address.street}</Text>
-                            <Text  style={{ margin: 5, color: 'white', fontSize: Width * .05 }}>{address.suite}</Text>
-                            <Text  style={{ margin: 5, color: 'white', fontSize: Width * .05 }}>{address.city}</Text>
-                            <Text  style={{ margin: 5, color: 'white', fontSize: Width * .05 }}>{zipcode.street}</Text>
-                            </View>
-
-                        )
-                           
-                    }
-                        
-                    )
-
-                    
-                }
-            </View> */}
-
-
-        </View>
+        </TouchableOpacity>
     )
 }

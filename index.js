@@ -14,8 +14,10 @@ MainScreen:{
   
 },
 DetailScreen:{
-    screen:DetailComponent
-  
+    screen:DetailComponent,
+    navigationOptions:{
+        headerTitle:'Detail',
+    }
 },
 ThirdScreen:{
     screen:ThirdComponent,
