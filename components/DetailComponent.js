@@ -28,16 +28,16 @@ export default DetailComponent = (props) => {
     }
     const paramsRecievedFromMain = props.navigation.state.params
     const { navigate } = props.navigation;
-    const [selected, setSelected] = React.useState(new Map());
+    // const [selected, setSelected] = React.useState(new Map());
 
-    const onSelect = React.useCallback(
-        id => {
-            const newSelected = new Map(selected);
-            newSelected.set(id, !selected.get(id));
-            setSelected(newSelected);
-        },
-        [selected],
-    );
+    // const onSelect = React.useCallback(
+    //     id => {
+    //         const newSelected = new Map(selected);
+    //         newSelected.set(id, !selected.get(id));
+    //         setSelected(newSelected);
+    //     },
+    //     [selected],
+    // );
     return (
         <View style={{
             flex: 1, justifyContent: 'space-around',
@@ -46,15 +46,15 @@ export default DetailComponent = (props) => {
             <View style={{ height: Width, justifyContent: 'center', alignItems: 'center' }}>
                 <FlatList
                     data={usersdata}
-                    extraData={selected}
+                    extraData={usersdata}
                     renderItem={({ item, index }) =>
                         <User
                             name={item.name}
                             username={item.username}
                             email={item.email}
                             id={item.id}
-                            selected={!!selected.get(item.id)}
-                            onSelect={onSelect}
+                            // selected={!!selected.get(item.id)}
+                            // onSelect={onSelect}
                         // address={item.address}
                         />
                     }
