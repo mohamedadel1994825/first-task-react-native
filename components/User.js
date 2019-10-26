@@ -7,12 +7,7 @@ export const User = ({ name, username, email, phone}) => {
     const appUsername = ["username",username]
     const appUseremail = ["email",email]
     const appUserphone = ["phone",phone]
-let userdataObject={
-    appName,
-    appUsername,
-    appUseremail,
-    appUserphone
-}
+
     let userCard=   isselected?<TouchableOpacity
     onPress={() => {
         AsyncStorage.multiSet([appName, appUsername,appUseremail,appUserphone]),

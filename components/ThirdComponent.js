@@ -18,7 +18,7 @@ export default class ThirdComponent extends Component {
     render() {
 
         let datasource = this.state.userData
-
+        // let usersInfo = datasource.push(this.state.userData)
         return (
             <View style={{
                 flex: 1, justifyContent: 'space-around',
