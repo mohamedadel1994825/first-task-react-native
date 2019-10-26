@@ -5,8 +5,6 @@ export const User = ({ name, username, email, phone, selected, onSelect, id }) =
     // const [name, setName,username, setUsername,email,
     //      setEmail,phone,setPhone,name, setName,] = useState('value');
     const [isselected, setIsselected] = useState(true);
-    const [ischeked, setIschecked] = useState(false);
-
     let userCard=   isselected?<TouchableOpacity
     onPress={() => {
         // onSelect(id),
@@ -16,7 +14,7 @@ export const User = ({ name, username, email, phone, selected, onSelect, id }) =
     activeOpacity={.9}
     style={{
         width: Width * .9, justifyContent: 'space-around', marginTop: Width * .02,
-        alignItems: 'center', backgroundColor: ischeked ? 'orange' : MyColors.usersBorderColor,
+        alignItems: 'center', backgroundColor: MyColors.usersBorderColor,
         borderColor: MyColors.usersBorderColor,
         borderWidth: Width * .01
     }}>
