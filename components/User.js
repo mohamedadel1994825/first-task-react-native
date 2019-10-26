@@ -1,14 +1,21 @@
 import { MyColors, Width } from '..';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet, AsyncStorage, } from 'react-native';
 import React, { useState, useEffect } from 'react'
-export const User = ({ name, username, email, phone, selected, onSelect, id }) => {
-    // const [name, setName,username, setUsername,email,
-    //      setEmail,phone,setPhone,name, setName,] = useState('value');
+export const User = ({ name, username, email, phone}) => {
     const [isselected, setIsselected] = useState(true);
+    const appName = ["name", name]
+    const appUsername = ["username",username]
+    const appUseremail = ["email",email]
+    const appUserphone = ["phone",phone]
+let userdataObject={
+    appName,
+    appUsername,
+    appUseremail,
+    appUserphone
+}
     let userCard=   isselected?<TouchableOpacity
     onPress={() => {
-        // onSelect(id),
-        AsyncStorage.setItem('name', name),
+        AsyncStorage.multiSet([appName, appUsername,appUseremail,appUserphone]),
         setIsselected(false)
     }}
     activeOpacity={.9}

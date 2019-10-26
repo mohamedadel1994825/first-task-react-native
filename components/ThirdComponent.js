@@ -3,15 +3,22 @@ import { View, Text, AsyncStorage } from 'react-native';
 import React, { Component } from 'react'
 export default class ThirdComponent extends Component {
     state = {
-        name:['']
+        userData: [''],
     }
     // AsyncStorage.setItem('name', name)
-
+    componentDidMount() {
+        this.addUser()
+    }
+    addUser = async () => {
+        await AsyncStorage.multiGet(['name', 'username', 'email',
+            'phone']).then((response) => {
+                this.setState({ userData: response })
+            })
+    }
     render() {
-        AsyncStorage.getItem('name').then((name) => {
-            this.setState({name})
-        })
-        const{name}=this.state
+
+        let datasource = this.state.userData
+
         return (
             <View style={{
                 flex: 1, justifyContent: 'space-around',
@@ -21,10 +28,14 @@ export default class ThirdComponent extends Component {
                     fontWeight: 'bold', fontSize: Width * .07,
                     textAlign: 'center', color: 'white'
                 }}>its Third Component</Text>
+                {/* <Text style={{
+                    fontWeight: 'bold', fontSize: Width * .07,
+                    textAlign: 'center', color: 'white'
+                }}>{datasource}+++</Text> */}
                 <Text style={{
                     fontWeight: 'bold', fontSize: Width * .07,
                     textAlign: 'center', color: 'white'
-                }}>{name}+++</Text>
+                }}>{datasource}+++</Text>
 
             </View>
         )

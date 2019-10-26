@@ -52,10 +52,7 @@ export default DetailComponent = (props) => {
                             name={item.name}
                             username={item.username}
                             email={item.email}
-                            id={item.id}
-                            // selected={!!selected.get(item.id)}
-                            // onSelect={onSelect}
-                        // address={item.address}
+                            phone={item.phone}                          
                         />
                     }
                     keyExtractor={item => item.id}
