@@ -1,0 +1,2 @@
+export const USER_DATA='USER_DATA'
+export const UPDATED_USER_DATA='UPDATED_USER_DATA'

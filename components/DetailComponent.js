@@ -2,8 +2,10 @@ import { MyColors, Width, Height } from '..';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { setUsersData, updateUsersData  } from '../components/actions/usersActions';
 import { User } from './User';
-export default DetailComponent = (props) => {
+   DetailComponent = (props) => {
     navigationOptions = ({ navigation }) => {
         let headerTitle = 'Detail',
             headereStyle = { backgroundColor: MyColors.greenColor1 },
@@ -13,7 +15,7 @@ export default DetailComponent = (props) => {
         return { headerTitle, headereStyle, headerTintColor, headerBackTitle, headerBackTitleStyle }
     }
 
-    const [usersdata, setUsersdata] = useState([]);
+    const [usersdata, setStateUsersdata] = useState([]);
     useEffect(
         () => {
             getUsersdata();
@@ -22,21 +24,14 @@ export default DetailComponent = (props) => {
     );
     const getUsersdata = () => {
         axios.get('http://jsonplaceholder.typicode.com/users')
-            .then(response => setUsersdata(response.data))
+            .then(response => props.setUsersData(response.data))
             .catch(err => console.error(err))
     }
+    props.updateUsersData(props.usersData)
+    let datasource=props.updatedUsersData
+    // setStateUsersdata(data)
     const paramsRecievedFromMain = props.navigation.state.params
     const { navigate } = props.navigation;
-    // const [selected, setSelected] = React.useState(new Map());
-
-    // const onSelect = React.useCallback(
-    //     id => {
-    //         const newSelected = new Map(selected);
-    //         newSelected.set(id, !selected.get(id));
-    //         setSelected(newSelected);
-    //     },
-    //     [selected],
-    // );
     return (
         <View style={{
             flex: 1, justifyContent: 'space-around',
@@ -44,8 +39,8 @@ export default DetailComponent = (props) => {
         }} >
             <View style={{ height: Width, justifyContent: 'center', alignItems: 'center' }}>
                 <FlatList
-                    data={usersdata}
-                    extraData={usersdata}
+                    data={datasource}
+                    extraData={datasource}
                     renderItem={({ item, index }) =>
                         <User
                             id={item.id}
@@ -76,7 +71,14 @@ export default DetailComponent = (props) => {
         </View>
     )
 }
-
+const mapStateToProps = state => ({
+    usersData: state.users.usersData,
+    updatedUsersData:state.users.updatedUsersData
+  });
+  export default connect(
+    mapStateToProps,
+    { setUsersData, updateUsersData }
+  )(DetailComponent);
 
 const styles = StyleSheet.create({
 

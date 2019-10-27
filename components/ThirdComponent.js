@@ -7,13 +7,12 @@ export default class ThirdComponent extends Component {
         userData: [''],
         data:[]
     }
+    // AsyncStorage.setItem('name', name)
     componentDidMount() {
-        let userData = this.state.userData.slice();
-        userData.push(userData);
-        this.setState({userData});;
+        // let userData = this.state.userData.slice();
+        // userData.push(userData);
+        // this.setState({userData});;
         this.addUser()
-    }
-    componentWillUpdate(){
     }
     addUser() {
         AsyncStorage.getItem('userdataObject')
@@ -22,9 +21,9 @@ export default class ThirdComponent extends Component {
             })
             .then((parsedResponse) => {
                 // this.setState({data:parsedResponse})
-                this.setState(prevState => ({
-                    userData: [parsedResponse,...prevState.userData,parsedResponse]
-                  }))
+                // this.setState(prevState => ({
+                //     userData: [parsedResponse,...prevState.userData,parsedResponse]
+                //   }))
             });
     }
     

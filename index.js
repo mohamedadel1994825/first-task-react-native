@@ -8,6 +8,8 @@ import ThirdComponent from './components/ThirdComponent';
 import DetailComponent from './components/DetailComponent';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
+import store from './store'
+import {Provider} from 'react-redux'
 const MainNavigator  = createStackNavigator({
 MainScreen:{
     screen:MainComponent,
@@ -26,8 +28,13 @@ ThirdScreen:{
     }
 }
 })
-const App2 = createAppContainer(MainNavigator );
-AppRegistry.registerComponent(appName, () => App2);
+
+const UserApp = createAppContainer(MainNavigator );
+const RNRedux = () => (
+    <Provider store = { store }>
+      <UserApp />
+    </Provider>)
+AppRegistry.registerComponent(appName, () => RNRedux);
 export {
     Width,
     Height,
