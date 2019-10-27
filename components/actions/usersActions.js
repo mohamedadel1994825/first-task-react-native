@@ -1,4 +1,4 @@
-import {USER_DATA,UPDATED_USER_DATA} from './types'
+import {USER_DATA,UPDATED_USER_DATA,USER_PRESSED} from './types'
 export const setUsersData = (usersData) =>dispatch => (
     dispatch(  {
         type: USER_DATA,
@@ -13,3 +13,10 @@ export const setUsersData = (usersData) =>dispatch => (
 
     })
   )
+  export const setUserPressedData = (userPressedData) => dispatch=>(
+    dispatch(  {
+      type: USER_PRESSED,
+      payload: userPressedData
+
+  })
+)

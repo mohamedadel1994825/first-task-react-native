@@ -1,7 +1,7 @@
-import { USER_DATA,UPDATED_USER_DATA } from '../actions/types';
+import { USER_DATA,UPDATED_USER_DATA,USER_PRESSED } from '../actions/types';
 const initialState = {
     usersData: [],
-    user: [],
+    userPressedData: [],
     updatedUsersData:[]
 }
 export default function (state = initialState, action) {
@@ -15,6 +15,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 updatedUsersData: action.payload,
+            }
+            case USER_PRESSED:
+            return {
+                ...state,
+                userPressedData: action.payload,
             }
         default:
             return state
