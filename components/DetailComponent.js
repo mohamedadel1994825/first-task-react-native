@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { User } from './User';
 export default DetailComponent = (props) => {
-
     navigationOptions = ({ navigation }) => {
         let headerTitle = 'Detail',
             headereStyle = { backgroundColor: MyColors.greenColor1 },
@@ -49,10 +48,11 @@ export default DetailComponent = (props) => {
                     extraData={usersdata}
                     renderItem={({ item, index }) =>
                         <User
+                            id={item.id}
                             name={item.name}
                             username={item.username}
                             email={item.email}
-                            phone={item.phone}                          
+                            phone={item.phone}
                         />
                     }
                     keyExtractor={item => item.id}
