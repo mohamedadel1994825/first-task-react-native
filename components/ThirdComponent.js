@@ -1,12 +1,25 @@
 import { MyColors, Width } from '..';
-import { View, Text, TouchableOpacity, FlatList, StyleSheet,AsyncStorage } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, StyleSheet, AsyncStorage } from 'react-native';
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { setUsersData, updateUsersData,setUserPressedData  } from '../components/actions/usersActions';
+import { setUsersData, updateUsersData, setUserPressedData } from '../components/actions/usersActions';
+import UserCard from './UserCard';
 class ThirdComponent extends Component {
     state = {
         userData: [''],
         data: []
+    }
+    static navigationOptions = ({ navigation }) => {
+        let headerTitle = 'Selected User',
+        headerStyle = {
+            backgroundColor: MyColors.gray1, elevation: 0,
+            shadowOpacity: 10,borderColor:'darkviolet',
+        },
+            headerTitleStyle = { color: 'darkviolet', marginLeft: Width * .13 },
+            headerTintColor='darkviolet',
+            headerBackTitle = 'Back',
+            headerBackTitleStyle = { color: 'green', margin: 100 }
+        return { headerTitle, headerStyle,headerTitleStyle, headerTintColor, headerBackTitle, headerBackTitleStyle }
     }
     componentDidMount() {
         this.addUser()
@@ -22,32 +35,6 @@ class ThirdComponent extends Component {
     }
     render() {
         let datasource = this.props.userPressedData
-        let User = ({ id, name, username, email, phone }) =>
-            <TouchableOpacity
-                activeOpacity={.9}
-                style={{
-                    width: Width * .9, justifyContent: 'space-around', marginTop: Width * .02,
-                    alignItems: 'center', backgroundColor: MyColors.usersBorderColor,
-                    borderColor: MyColors.usersBorderColor,
-                    borderWidth: Width * .01
-                }}>
-                <Text style={{
-                    fontWeight: 'bold', fontSize: Width * .05,
-                    textAlign: 'center', color: 'white'
-                }}>{name}</Text>
-                <Text style={{
-                    fontWeight: 'bold', fontSize: Width * .05,
-                    textAlign: 'center', color: 'white'
-                }}>{username}</Text>
-                <Text style={{
-                    fontWeight: 'bold', fontSize: Width * .05,
-                    textAlign: 'center', color: 'white'
-                }}>{email}</Text>
-                <Text style={{
-                    fontWeight: 'bold', fontSize: Width * .05,
-                    textAlign: 'center', color: 'white'
-                }}>{phone}</Text>
-            </TouchableOpacity>
         return (
             <View style={{
                 flex: 1, justifyContent: 'space-around',
@@ -58,7 +45,7 @@ class ThirdComponent extends Component {
                         data={datasource}
                         extraData={datasource}
                         renderItem={({ item, index }) =>
-                            <User
+                            <UserCard
                                 id={item.id}
                                 name={item.name}
                                 username={item.username}

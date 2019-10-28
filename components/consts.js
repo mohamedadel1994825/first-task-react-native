@@ -6,4 +6,7 @@ export const MyColors={
     greenColor1:'#319E5F',
     usersBorderColor:'#C4655C',
     blueWhite:'#007069',
+    gray1:'#DDDDDD',
+    darkviolet:'darkviolet',
+    userCardColor:'#702C8F'
 }

@@ -10,7 +10,7 @@ export default class SplachScreen extends Component {
     }
     static navigationOptions = {
         headerStyle: {
-            backgroundColor: MyColors.greenColor1,
+            backgroundColor: MyColors.blueWhite,
             elevation: 0,
             shadowOpacity: 0
         }
@@ -30,7 +30,7 @@ export default class SplachScreen extends Component {
                 <Text style={{
                     fontSize: Width * .09,
                     textAlign: 'center', color: 'white',marginBottom:Width*.2
-                }}>Splash Screen </Text>
+                }}>Users App </Text>
             </View>
         )
     }

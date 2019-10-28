@@ -1,8 +1,9 @@
 import { MyColors, Width } from '..';
-import { View, Text, TouchableOpacity, FlatList, StyleSheet,AsyncStorage } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, StyleSheet, AsyncStorage } from 'react-native';
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { setUsersData, updateUsersData } from '../components/actions/usersActions';
+import UserCard from './UserCard'
 class User extends Component {
     setUsers = async () => {
         try {
@@ -37,39 +38,55 @@ class User extends Component {
     }
     render() {
         let { id, name, username, email, phone } = this.props
-        let userCard = <TouchableOpacity
-            onPress={
-                () => {
-                    this.setUsers(),
-                        this.getUsers(id)
-                }
-            }
-            activeOpacity={.9}
-            style={{
-                width: Width * .9, justifyContent: 'space-around', marginTop: Width * .02,
-                alignItems: 'center', backgroundColor: MyColors.usersBorderColor,
-                borderColor: MyColors.usersBorderColor,
-                borderWidth: Width * .01
-            }}>
-            <Text style={{
-                fontWeight: 'bold', fontSize: Width * .05,
-                textAlign: 'center', color: 'white'
-            }}>{name}</Text>
-            <Text style={{
-                fontWeight: 'bold', fontSize: Width * .05,
-                textAlign: 'center', color: 'white'
-            }}>{username}</Text>
-            <Text style={{
-                fontWeight: 'bold', fontSize: Width * .05,
-                textAlign: 'center', color: 'white'
-            }}>{email}</Text>
-            <Text style={{
-                fontWeight: 'bold', fontSize: Width * .05,
-                textAlign: 'center', color: 'white'
-            }}>{phone}</Text>
-        </TouchableOpacity>
+        // let userCard = <TouchableOpacity
+        //     onPress={
+        //         () => {
+        //             this.setUsers(),
+        //                 this.getUsers(id)
+        //         }
+        //     }
+        //     activeOpacity={.9}
+        //     style={{
+        //         width: Width * .9, justifyContent: 'space-around', marginTop: Width * .02,
+        //         alignItems: 'center', backgroundColor: MyColors.usersBorderColor,
+        //         borderColor: MyColors.usersBorderColor,
+        //         shadowColor:MyColors.usersBorderColor,
+        //         shadowOpacity:10,shadowRadius:Width*.05,
+        //         borderRadius:Width*.05
+        //         // position:'absolute',
+        //     }}>
+        //     <Text style={{
+        //         fontWeight: 'bold', fontSize: Width * .05,
+        //         textAlign: 'center', color: 'white'
+        //     }}>{name}</Text>
+        //     <Text style={{
+        //         fontWeight: 'bold', fontSize: Width * .05,
+        //         textAlign: 'center', color: 'white'
+        //     }}>{username}</Text>
+        //     <Text style={{
+        //         fontWeight: 'bold', fontSize: Width * .05,
+        //         textAlign: 'center', color: 'white'
+        //     }}>{email}</Text>
+        //     <Text style={{
+        //         fontWeight: 'bold', fontSize: Width * .05,
+        //         textAlign: 'center', color: 'white'
+        //     }}>{phone}</Text>
+        // </TouchableOpacity>
+
         return (
-            userCard
+            <UserCard
+                id={id}
+                name={name}
+                username={username}
+                email={email}
+                phone={phone}
+                onPress={
+                    ()=>{
+                        this.setUsers(),
+                        this.getUsers(id)  
+                    }
+                }
+            />
         )
     }
 }

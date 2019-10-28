@@ -20,16 +20,14 @@ const MainNavigator = createStackNavigator({
         screen: MainComponent,
 
     },
-    DetailScreen: {
+    Users: {
         screen: DetailComponent,
         navigationOptions: {
-            headerTitle: 'Detail',
         }
     },
-    ThirdScreen: {
+    UserSelected: {
         screen: ThirdComponent,
         navigationOptions: {
-            headerTitle: 'Third',
         }
     }
 })

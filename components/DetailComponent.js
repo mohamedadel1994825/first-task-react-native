@@ -14,12 +14,16 @@ class DetailComponent extends Component {
         };
       }
    static navigationOptions = ({ navigation }) => {
-        let headerTitle = 'Detail',
-            headereStyle = { backgroundColor: MyColors.greenColor1 },
-            headerTintColor = 'blue',
+        let headerTitle = 'Users',
+        headerStyle = {
+            backgroundColor: MyColors.gray1, elevation: 0,
+            shadowOpacity: 10,borderColor:'darkviolet',
+        },
+            headerTitleStyle = { color: 'darkviolet', marginLeft: Width * .23 },
+            headerTintColor='darkviolet',
             headerBackTitle = 'Back',
             headerBackTitleStyle = { color: 'green', margin: 100 }
-        return { headerTitle, headereStyle, headerTintColor, headerBackTitle, headerBackTitleStyle }
+        return { headerTitle, headerStyle,headerTitleStyle, headerTintColor, headerBackTitle, headerBackTitleStyle }
     }
     getUsersdata = () => {
         axios.get('http://jsonplaceholder.typicode.com/users')
@@ -62,12 +66,12 @@ class DetailComponent extends Component {
                     borderRadius: Width * .01, backgroundColor: 'darkviolet'
                 }}
                     onPress={() => {
-                        navigate('ThirdScreen')
+                        navigate('UserSelected')
                     }} >
                     <Text style={{
                         fontWeight: 'bold', fontSize: Width * .05,
                         textAlign: 'center', color: 'white'
-                    }}>navigate to ThirdScreen</Text>
+                    }}>navigate to selected user</Text>
                 </TouchableOpacity>
             </View>
         )
