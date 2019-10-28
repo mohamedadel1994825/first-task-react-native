@@ -1,20 +1,38 @@
 import { MyColors, Width } from '..';
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator, TextInput } from 'react-native';
 import React, { Component } from 'react'
 export default class MainComponent extends Component {
-    
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            data: [],
+            inputText: '',
+            textSaved: '',
+            isTextSaved:false
+        };
+    }
     static navigationOptions = ({ navigation }) => {
         const { params } = navigation.state
+        
         let headerTitle = 'Main',
-            headerTitleStyle = { color: 'darkviolet' },
-            headerBackTitle='Back',
-            headerBackTitleStyle={color:'green',margin:100}
-            headerStyle = { backgroundColor: 'green' },
-            headerRight = (<TouchableOpacity style={{
-                justifyContent: 'center', alignItems: 'center', marginRight: Width * .03,
-                color: 'white', backgroundColor: 'darkviolet',
-                width: Width * .2, height: Width * .1, borderRadius: Width * .02
-            }}
+        headerTintColor ='darkviolet' ,
+    headerTitleStyle = { color: 'darkviolet', marginLeft: Width * .2 },
+        headerBackTitle = {color:'darkviolet'},
+        headerBackTitleStyle = { color: 'green', margin: 100 }
+    headerStyle = {
+        backgroundColor: 'green', elevation: 0,
+        shadowOpacity: 0
+    },
+        headerRight = (<TouchableOpacity 
+            activeOpacity={.9}
+            style={{
+            justifyContent: 'center', alignItems: 'center', marginRight: Width * .03,
+            color: 'white', backgroundColor: 'darkviolet',
+            width: Width * .2, height: Width * .1, borderRadius: Width * .02,
+            elevation: 0,
+            shadowOpacity: 0
+        }}
                 onPress={() => {
                     params.onSave()
                 }}
@@ -23,43 +41,54 @@ export default class MainComponent extends Component {
                     Save
                     </Text>
             </TouchableOpacity>)
-        return { headerTitle, headerTitleStyle, headerStyle, headerRight,headerBackTitle,headerBackTitleStyle }
+        return { headerTitle, headerTitleStyle, headerStyle, headerRight, headerBackTitle, headerBackTitleStyle }
     };
     onsave = () => {
         const { setParams } = this.props.navigation
         const { params } = this.props.navigation.state
-        setParams({isSaving:true})
+        setParams({ isSaving: true })
         setInterval(() => {
             setParams({ isSaving: false })
-        }, 3000);
+        }, 100);
+        this.setState({isTextSaved:true})
+        
     }
     componentDidMount() {
         const { setParams } = this.props.navigation
         setParams({ onSave: this.onsave, isSaving: false })
     }
-
+    onChangeText = (inputText) => {
+        this.setState({ textSaved:inputText }),
+        this.setState({isTextSaved:false})
+    }
     render() {
         const { navigate } = this.props.navigation;
         const { params } = this.props.navigation.state;
-        let dataSendToDetail = {
-            name: 'Star War',
-            releasedYear: 1994
-        }
-        let mainView = (params&&params.isSaving) ? <ActivityIndicator /> : <View style={{
+        const { textSaved } = this.state
+        let mainView = (params && params.isSaving) ? <ActivityIndicator /> : <View style={{
             flex: 1, justifyContent: 'space-around',
             alignItems: 'center', backgroundColor: MyColors.greenColor1
         }} >
-            <Text style={{
+            {this.state.isTextSaved?<Text style={{
                 fontWeight: 'bold', fontSize: Width * .07,
                 textAlign: 'center', color: 'white'
-            }}>its Main Component</Text>
+            }}>{textSaved}</Text>:<Text></Text>}
+            <TextInput
+                placeholder='insert user name ...'
+                style={{
+                    width: Width * .85, height: Width * .12,
+                    justifyContent: 'center', alignItems: 'center',
+                    color: MyColors.greenColor1, fontSize: Width * .04, backgroundColor: 'white',
+                }}
+                onChangeText={this.onChangeText}
+            />
             <TouchableOpacity style={{
                 width: Width * .6, height: Width * .1,
                 justifyContent: 'center', alignItems: 'center', borderColor: 'gray',
                 borderRadius: Width * .01, backgroundColor: 'darkviolet'
             }}
                 onPress={() => {
-                    navigate('DetailScreen', dataSendToDetail)
+                    navigate('DetailScreen')
                 }}
             >
                 <Text style={{
@@ -67,10 +96,9 @@ export default class MainComponent extends Component {
                     textAlign: 'center', color: 'white'
                 }}>navigate to DetailScreen</Text>
             </TouchableOpacity>
-
         </View>
         return (
-             mainView 
+            mainView
         )
     }
 }

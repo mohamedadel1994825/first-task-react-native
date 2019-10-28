@@ -29,25 +29,7 @@ class DetailComponent extends Component {
     componentDidMount(){
             this.getUsersdata();
             console.log('lets see fetched data')
-
     }
-    // componentDidUpdate(prevProps) {
-    //     //Typical usage, don't forget to compare the props
-    //     if (this.props.usersData !== prevProps.usersData) {
-    //                 this.props.updateUsersData(this.props.usersData)
-    //         let datasource=this.props.updatedUsersData    
-    //     this.setState({data:datasource})
-    //     }
-    //    }
-    // componentDidUpdate(prevProps) {
-    //     //Typical usage, don't forget to compare the props
-    //     if (this.props.usersData !== prevProps.usersData) {
-    //                 this.props.updateUsersData(this.props.usersData)
-    //         let datasource=this.props.updatedUsersData    
-    //     this.setState({data:datasource})
-    //     }
-    //    }
-   
     render(){
         this.props.updateUsersData(this.props.usersData)
         let datasource=this.props.updatedUsersData
@@ -73,7 +55,6 @@ class DetailComponent extends Component {
                         }
                         keyExtractor={item => item.id}
                     />
-    
                 </View>
                 <TouchableOpacity style={{
                     width: Width * .6, height: Width * .1, marginTop: Width * .1,
@@ -82,8 +63,7 @@ class DetailComponent extends Component {
                 }}
                     onPress={() => {
                         navigate('ThirdScreen')
-                    }}
-                >
+                    }} >
                     <Text style={{
                         fontWeight: 'bold', fontSize: Width * .05,
                         textAlign: 'center', color: 'white'
@@ -104,5 +84,4 @@ const mapStateToProps = state => ({
   )(DetailComponent);
 
 const styles = StyleSheet.create({
-
 });

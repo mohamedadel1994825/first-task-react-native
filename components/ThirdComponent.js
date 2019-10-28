@@ -1,19 +1,14 @@
 import { MyColors, Width } from '..';
-import { View, Text, TouchableOpacity, FlatList, StyleSheet, } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, StyleSheet,AsyncStorage } from 'react-native';
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { setUsersData, updateUsersData,setUserPressedData  } from '../components/actions/usersActions';
-import AsyncStorage from '@react-native-community/async-storage';
 class ThirdComponent extends Component {
     state = {
         userData: [''],
         data: []
     }
-    // AsyncStorage.setItem('name', name)
     componentDidMount() {
-        // let userData = this.state.userData.slice();
-        // userData.push(userData);
-        // this.setState({userData});;
         this.addUser()
     }
     addUser() {
@@ -25,10 +20,7 @@ class ThirdComponent extends Component {
                 this.props.setUserPressedData(parsedResponse)
             });
     }
-
     render() {
-
-
         let datasource = this.props.userPressedData
         let User = ({ id, name, username, email, phone }) =>
             <TouchableOpacity
