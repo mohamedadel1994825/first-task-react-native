@@ -38,7 +38,7 @@ class DetailComponent extends Component {
         return (
             <View style={{
                 flex: 1, justifyContent: 'space-around',
-                alignItems: 'center', backgroundColor: MyColors.greenColor1, width: Width
+                alignItems: 'center', backgroundColor: MyColors.blueWhite, width: Width
             }} >
                 <View style={{ height: Width, justifyContent: 'center', alignItems: 'center' }}>
                     <FlatList

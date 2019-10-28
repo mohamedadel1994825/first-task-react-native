@@ -24,7 +24,7 @@ export default class SplachScreen extends Component {
         return (
             <View style={{
                 flex: 1, justifyContent: 'space-around',
-                alignItems: 'center', backgroundColor: MyColors.greenColor1,
+                alignItems: 'center', backgroundColor: MyColors.blueWhite,
                  width: Width, height: '100%'
             }} >
                 <Text style={{

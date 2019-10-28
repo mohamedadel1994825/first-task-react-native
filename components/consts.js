@@ -4,5 +4,6 @@ export const Height=Dimensions.get('window').height
 export const MyColors={
     whiteRed:'#82281A',
     greenColor1:'#319E5F',
-    usersBorderColor:'#C4655C'
+    usersBorderColor:'#C4655C',
+    blueWhite:'#007069',
 }

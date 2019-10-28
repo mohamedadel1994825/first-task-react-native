@@ -16,7 +16,7 @@ export default class MainComponent extends Component {
         const { params } = navigation.state
         
         let headerTitle = 'Main',
-        headerTintColor ='darkviolet' ,
+        headerTintColor='darkviolet',
     headerTitleStyle = { color: 'darkviolet', marginLeft: Width * .2 },
         headerBackTitle = {color:'darkviolet'},
         headerBackTitleStyle = { color: 'green', margin: 100 }
@@ -41,16 +41,16 @@ export default class MainComponent extends Component {
                     Save
                     </Text>
             </TouchableOpacity>)
-        return { headerTitle, headerTitleStyle, headerStyle, headerRight, headerBackTitle, headerBackTitleStyle }
+        return { headerTintColor,headerTitle, headerTitleStyle, headerStyle, headerRight, headerBackTitle, headerBackTitleStyle }
     };
     onsave = () => {
         const { setParams } = this.props.navigation
         const { params } = this.props.navigation.state
         setParams({ isSaving: true })
-        setInterval(() => {
-            setParams({ isSaving: false })
-        }, 100);
-        this.setState({isTextSaved:true})
+        setTimeout(() => {
+            setParams({ isSaving: false }),
+            this.setState({isTextSaved:true})
+        }, 500);
         
     }
     componentDidMount() {
@@ -65,9 +65,10 @@ export default class MainComponent extends Component {
         const { navigate } = this.props.navigation;
         const { params } = this.props.navigation.state;
         const { textSaved } = this.state
-        let mainView = (params && params.isSaving) ? <ActivityIndicator /> : <View style={{
+        let mainView = (params && params.isSaving) ? 
+        <ActivityIndicator color={MyColors.blueWhite} /> : <View style={{
             flex: 1, justifyContent: 'space-around',
-            alignItems: 'center', backgroundColor: MyColors.greenColor1
+            alignItems: 'center', backgroundColor: MyColors.blueWhite
         }} >
             {this.state.isTextSaved?<Text style={{
                 fontWeight: 'bold', fontSize: Width * .07,
