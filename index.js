@@ -2,33 +2,26 @@ import React, { Component } from 'react'
 import { Width, Height, MyColors } from './components/consts';
 import { AppRegistry } from 'react-native';
 import { name as appName } from './app.json';
-import App from './App'
-import MainComponent from './components/MainComponent';
-import ThirdComponent from './components/ThirdComponent';
-import DetailComponent from './components/DetailComponent';
+import Main from './components/screens/Main';
+import UserSelected from './components/screens/UserSelected';
+import Users from './components/screens/Users';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import store from './store'
 import { Provider } from 'react-redux'
-import SplachScreen from './components/SplachScreen';
+import Splash from './components/screens/Splash';
 const MainNavigator = createStackNavigator({
-
     Splash: {
-        screen: SplachScreen,
+        screen: Splash,
     },
     MainScreen: {
-        screen: MainComponent,
-
+        screen: Main,
     },
     Users: {
-        screen: DetailComponent,
-        navigationOptions: {
-        }
+        screen: Users,
     },
     UserSelected: {
-        screen: ThirdComponent,
-        navigationOptions: {
-        }
+        screen: UserSelected,
     }
 })
 

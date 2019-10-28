@@ -9,30 +9,25 @@ export default UserCard=({onPress,id,name,username,email,phone})=>{
            
         }
         activeOpacity={.9}
-        style={{
-            width: Width * .9, justifyContent: 'space-around', marginTop: Width * .02,
-            alignItems: 'center', backgroundColor: MyColors.userCardColor,
-            borderColor: MyColors.usersBorderColor,
-            shadowColor:MyColors.usersBorderColor,
-            shadowOpacity:10,shadowRadius:Width*.02,
-            borderRadius:Width*.05
-        }}>
-        <Text style={{
-            fontWeight: 'bold', fontSize: Width * .05,
-            textAlign: 'center', color: 'white'
-        }}>name:{name}</Text>
-        <Text style={{
-            fontWeight: 'bold', fontSize: Width * .05,
-            textAlign: 'center', color: 'white'
-        }}>username:{username}</Text>
-        <Text style={{
-            fontWeight: 'bold', fontSize: Width * .05,
-            textAlign: 'center', color: 'white'
-        }}>email:{email}</Text>
-        <Text style={{
-            fontWeight: 'bold', fontSize: Width * .05,
-            textAlign: 'center', color: 'white'
-        }}>phone:{phone}</Text>
+        style={styles.btnCard}>
+        <Text style={styles.txtCard}>name:{name}</Text>
+        <Text style={styles.txtCard}>username:{username}</Text>
+        <Text style={styles.txtCard}>email:{email}</Text>
+        <Text style={styles.txtCard}>phone:{phone}</Text>
     </TouchableOpacity>
     )
 }
+const styles = StyleSheet.create({
+    btnCard:{
+        width: Width * .78,paddingTop:10,paddingBottom:10, justifyContent: 'space-around', marginTop: Width * .06,
+        alignItems: 'center', backgroundColor: MyColors.userCardColor,
+        borderColor: MyColors.usersBorderColor,
+        shadowColor:MyColors.usersBorderColor,
+        shadowOpacity:10,shadowRadius:Width*.02,
+        borderRadius:Width*.05
+    },
+    txtCard:{
+        fontSize: Width * .05,
+            textAlign: 'center', color: 'white',marginBottom:3
+    }
+});
