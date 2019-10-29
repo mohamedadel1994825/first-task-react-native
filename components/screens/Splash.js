@@ -25,7 +25,7 @@ export default class Splash extends Component {
             <View style={
                 styles.container
             } >
-                <Text style={styles.splashText}>Users App </Text>
+                <Text style={styles.splashText}>User App </Text>
             </View>
         )
     }
