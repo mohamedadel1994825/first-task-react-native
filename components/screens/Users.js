@@ -40,6 +40,7 @@ class Users extends Component {
             <View style={styles.container} >
                 <View style={styles.content}>
                     <FlatList
+                    showsVerticalScrollIndicator={false}
                         data={datasource}
                         extraData={datasource}
                         renderItem={({ item, index }) =>

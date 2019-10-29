@@ -36,7 +36,8 @@ class UserSelected extends Component {
             <View style={styles.container} >
                 <View style={styles.content}>
                     <FlatList
-                        data={datasource}
+                    showsVerticalScrollIndicator={false}
+                    data={datasource}
                         extraData={datasource}
                         renderItem={({ item, index }) =>
                             <UserCard

@@ -42,7 +42,7 @@ export default class Main extends Component {
         setTimeout(() => {
             setParams({ isSaving: false }),
                 this.setState({ isTextSaved: true })
-        }, 100);
+        }, 700);
 
     }
     componentDidMount() {
